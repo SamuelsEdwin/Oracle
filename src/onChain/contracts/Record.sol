@@ -13,7 +13,7 @@ contract Record {
     //data structure
     struct Records {
         string payload;
-        string signature;
+        string eventID;
     }
 
     constructor() public {
@@ -49,9 +49,9 @@ contract Record {
 
     }
 
-    function canAccess(address _usrAddress) public  returns(bool) {
-        bool access = allowed[_usrAddress];
-        return access;
+    function canAccess(address _usrAddress) public view returns(bool) {
+        return (true == allowed[_usrAddress]);
+
     }
 
     function addRecord(uint _record , uint _index) public hasAccess {
