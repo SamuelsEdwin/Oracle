@@ -1,5 +1,3 @@
-pragma solidity ^0.4.23;
-
 
 contract Record {
     //variables
@@ -32,7 +30,7 @@ contract Record {
     modifier hasAccess {
 
         require(
-        allowed[msg.sender] == true,
+            allowed[msg.sender] == true,
             "Sender not authorized."
         );
         _;
@@ -57,6 +55,32 @@ contract Record {
     function addRecord(uint _record , uint _index) public hasAccess {
         records[_index] = _record;
     }
+
+    function addData(string _payload, string _eventID) public hasAccess returns (uint256) {
+        //data[index++] = Records(_payload,_eventID);
+
+        Records recordInstance = data[index];
+        recordInstance.eventID = _eventID;
+        recordInstance.payload = _payload;
+        return index++;
+    }
+
+    function getData(uint256 _index) public view  returns (string ,string) {
+        return (data[_index].payload ,data[_index].eventID);
+
+    }
+
+    function getPayload(uint256 _index) public view returns (string) {
+
+        return data[_index].payload;
+
+    }
+
+    function getSignature(uint256 _index) public view returns (string) {
+        return data[_index].eventID;
+
+    }
+
 
     function getRecord(uint _index) public view returns (uint) {
         return records[_index];
