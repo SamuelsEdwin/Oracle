@@ -72,10 +72,8 @@ contract('record',function(accounts){
 
             await recorder.modifyAccess(accounts[1], true, {from: accounts[1]})
             const access = await recorder.canAccess(accounts[2]);
-
             assert.ok(false);
             } catch(err) {
-
             assert.ok(true);
             }
     });

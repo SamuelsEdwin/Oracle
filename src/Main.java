@@ -1,5 +1,7 @@
 import hardware.Sensor;
+import hardware.SensorData;
 
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
 
 public class Main {
@@ -9,8 +11,12 @@ public class Main {
     Sensor test = new Sensor("Unversioned/input_1.txt");
 
     try {
-        System.out.println(test.readSensor());
-    }catch (IOException i){
+        test.initializeSignature();
+        SensorData data = test.readSensor();
+        System.out.println(test.verify(data.mData,data.mSignature));
+
+
+    }catch (Exception i){
 
         i.printStackTrace();
 
