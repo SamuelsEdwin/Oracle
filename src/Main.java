@@ -1,3 +1,4 @@
+import hardware.RecordGenerator;
 import hardware.Sensor;
 import hardware.SensorData;
 
@@ -13,7 +14,11 @@ public class Main {
     try {
         test.initializeSignature();
         SensorData data = test.readSensor();
-        System.out.println(test.verify(data.mData,data.mSignature));
+        System.out.println(test.verify(data.mData ,data.mSignature));
+        RecordGenerator generator = new RecordGenerator(test);
+        generator.init();
+        System.out.println(generator.generateSignature("adde1","add2"));
+
 
 
     }catch (Exception i){
