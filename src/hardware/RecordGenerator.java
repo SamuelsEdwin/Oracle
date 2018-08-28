@@ -28,7 +28,6 @@ public class RecordGenerator {
         mFormat = new SimpleDateFormat("dd:MM:yyyy 'at' HH:mm");
 
 
-
     }
     public void init() throws NoSuchAlgorithmException {
         mDigest = MessageDigest.getInstance(HASHING_ALGORITHM);
@@ -36,7 +35,7 @@ public class RecordGenerator {
     }
 
 
-    public Event generateEvent(String address1, String address2) throws IOException,SignatureException {
+    public Event generateEvent(String pID1, String pID2) throws SignatureException {
 
 
         int randomValue = mRandom.nextInt();
@@ -44,11 +43,32 @@ public class RecordGenerator {
         String eventID;
 
         //Record record;
-        String pointer = String.format("%s:%s:%s:%s",address1,address2,randomValue,date);
+        String pointer = String.format("%s:%s:%s:%s",pID1,pID2,randomValue,date);
         eventID = hash(pointer);
 
         return new Event(eventID,pointer);
     }
+    public Record generateRecord(Record pData, String pID1,String pID2) throws SignatureException {
+
+        Event event = generateEvent(pID1,pID2);
+
+
+        return new Record(pData.mData,pData.mSignature,event.mEventID);
+
+
+    }
+
+
+
+    public ExtendedRecord generateExtendedRecord(Record pData, String pID1,String pID2) throws SignatureException {
+
+        Event event = generateEvent(pID1,pID2);
+        return new ExtendedRecord(
+                new Record(pData.mData,pData.mSignature,event.mEventID),
+                event.mEventString);
+    }
+
+
 
     private String hash( String pInput) {
 
