@@ -36,7 +36,7 @@ public class Main {
 
         try {
             Deploy deployment = new Deploy();
-            //deployment.generateWallet();
+            deployment.generateWallet();
         }catch (Exception e) {
             e.printStackTrace();
         }

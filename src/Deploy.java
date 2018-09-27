@@ -33,7 +33,7 @@ public class Deploy {
 
     public Deploy(String pServiceProvider ,String pPassword, String pWalletDirectory) {
         web3 = Web3j.build(new HttpService());  // defaults to http://localhost:8545/
-        credentials = WalletUtils.loadCredentials(pPassword,pWalletDirectory );
+        //credentials = WalletUtils.loadCredentials(pPassword,pWalletDirectory );
 
     }
 
