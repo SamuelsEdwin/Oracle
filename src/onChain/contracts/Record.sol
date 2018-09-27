@@ -1,89 +1,86 @@
+pragma solidity ^0.4.7;
 
 contract Record {
-    //variables
-    address public owner;
-    uint[16] private records;//testing -todo replace
-    uint256 private index;
+//variables
+address public owner; 
+uint[16] private recordArray; //testing -todo replace
+uint256 private index; 
 
-    //mappings
-    mapping (address => bool) private allowed;
-    mapping (uint256 => Records) public data;
-    //data structure
-    struct Records {
-        string payload;
-        string eventID;
-    }
+//mappings
+mapping (address => bool)private allowed; 
+mapping (uint256 => Records)public data; 
+//data structure
+struct Records {
+    string payload; 
+    string eventID; 
+}
+constructor() public {
+    owner = msg.sender; 
+    index = 0; 
+}
 
-    constructor() public {
-        owner = msg.sender;
-        index = 0;
-    }
+modifier onlyBy(address _account) {
+    require(
+    msg.sender == _account, 
+    "Sender not authorized."
+    ); 
+    _; 
+}
+modifier hasAccess {
 
-    modifier onlyBy(address _account)
-    {
-        require(
-            msg.sender == _account,
-            "Sender not authorized."
-        );
-        _;
-    }
-    modifier hasAccess {
-
-        require(
-            allowed[msg.sender] == true,
-            "Sender not authorized."
-        );
-        _;
-    }
+require(
+allowed[msg.sender] == true, 
+"Sender not authorized."
+); 
+_; 
+}
 
 
 
-    function getOwner() public view returns(address) {
-        return owner;
-    }
-    function modifyAccess(address _usrAddress , bool _permission) public onlyBy(owner) {
+function getOwner()public view returns(address) {
+    return owner; 
+}
+function modifyAccess(address _usrAddress, bool _permission)public onlyBy(owner) {
 
-        allowed[_usrAddress] = _permission;
+    allowed[_usrAddress] = _permission; 
 
-    }
+}
 
-    function canAccess(address _usrAddress) public view returns(bool) {
-        return (true == allowed[_usrAddress]);
+function canAccess(address _usrAddress)public view returns(bool) {
+    return (true == allowed[_usrAddress]); 
+}
 
-    }
+function addRecord(uint _record, uint _index)public hasAccess {
+    recordArray[_index] = _record; 
+}
 
-    function addRecord(uint _record , uint _index) public hasAccess {
-        records[_index] = _record;
-    }
+function addData(string _payload, string _eventID) public hasAccess returns (uint256) {
 
-    function addData(string _payload, string _eventID) public hasAccess returns (uint256) {
-        //data[index++] = Records(_payload,_eventID);
+    Records storage recordInstance = data[index]; 
+    recordInstance.eventID = _eventID; 
+    recordInstance.payload = _payload; 
+    return index++; 
+}
 
-        Records recordInstance = data[index];
-        recordInstance.eventID = _eventID;
-        recordInstance.payload = _payload;
-        return index++;
-    }
+function getData(uint256 _index)public view  returns (string, string) {
+return (data[_index].payload, data[_index].eventID); 
 
-    function getData(uint256 _index) public view  returns (string ,string) {
-        return (data[_index].payload ,data[_index].eventID);
+}
 
-    }
+function getPayload(uint256 _index)public view returns (string) {
 
-    function getPayload(uint256 _index) public view returns (string) {
+return data[_index].payload; 
 
-        return data[_index].payload;
+}
 
-    }
+function getSignature(uint256 _index)public view returns (string) {
+return data[_index].eventID; 
 
-    function getSignature(uint256 _index) public view returns (string) {
-        return data[_index].eventID;
-
-    }
+}
 
 
-    function getRecord(uint _index) public view returns (uint) {
-        return records[_index];
-    }
+function getRecord(uint _index)public view returns (uint) {
+return recordArray[_index]; 
+}
 
 }
