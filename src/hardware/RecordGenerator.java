@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+
+
 public class RecordGenerator {
 
     private static String HASHING_ALGORITHM = "SHA-256";
