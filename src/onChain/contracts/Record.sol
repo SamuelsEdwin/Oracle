@@ -4,11 +4,11 @@ contract Record {
 //variables
 address public owner; 
 uint[16] private recordArray; //testing -todo replace
-uint256 private index; 
+uint256 public index;
 
 //mappings
 mapping (address => bool)private allowed; 
-mapping (uint256 => Records)public data; 
+mapping (uint256 => Records)public recordData;
 //data structure
 struct Records {
     string payload; 
@@ -16,7 +16,8 @@ struct Records {
 }
 constructor() public {
     owner = msg.sender; 
-    index = 0; 
+    index = 0;
+    allowed[owner] = true;
 }
 
 modifier onlyBy(address _account) {
@@ -55,26 +56,24 @@ function addRecord(uint _record, uint _index)public hasAccess {
 }
 
 function addData(string _payload, string _eventID) public hasAccess returns (uint256) {
+    index++;
+    recordData[index]=Records(_payload,_eventID);
 
-    Records storage recordInstance = data[index]; 
-    recordInstance.eventID = _eventID; 
-    recordInstance.payload = _payload; 
-    return index++; 
+    return index;
 }
 
 function getData(uint256 _index)public view  returns (string, string) {
-return (data[_index].payload, data[_index].eventID); 
-
+    return (recordData[_index].payload, recordData[_index].eventID);
 }
 
 function getPayload(uint256 _index)public view returns (string) {
 
-return data[_index].payload; 
+return recordData[_index].payload;
 
 }
 
 function getSignature(uint256 _index)public view returns (string) {
-return data[_index].eventID; 
+return recordData[_index].eventID;
 
 }
 
