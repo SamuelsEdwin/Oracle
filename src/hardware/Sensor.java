@@ -69,12 +69,7 @@ public class Sensor {
         }
         sensorData = sensorData.substring(0,sensorData.length()-2).trim();
 
-        //String signature = sign(sensorData);
-
         return new SensorData(sensorData,sign(sensorData));
-
-
-
     }
 
 
@@ -97,11 +92,5 @@ public class Sensor {
         mVerifySignature.update(data);
         return mVerifySignature.verify(pSignature);
     }
-
-
-
-
-
-
 
 }

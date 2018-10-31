@@ -1,5 +1,7 @@
 package hardware;
 
+import java.util.Arrays;
+
 public class Record {
     public String mData;
     public byte[] mSignature;//sensors signature
@@ -11,8 +13,14 @@ public class Record {
         this.mEventID = pEventID;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Record{" +
+                "mData='" + mData + '\'' +
+                ", mSignature=" + Arrays.toString(mSignature) +
+                ", mEventID='" + mEventID + '\'' +
+                '}';
+    }
 }
 
 

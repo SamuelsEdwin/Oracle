@@ -35,8 +35,6 @@ public class RecordGenerator {
         mDigest = MessageDigest.getInstance(HASHING_ALGORITHM);
 
     }
-
-
     public Event generateEvent(String pID1, String pID2) throws SignatureException {
 
 
@@ -50,6 +48,8 @@ public class RecordGenerator {
 
         return new Event(eventID,pointer);
     }
+
+
     public Record generateRecord(Record pData, String pID1,String pID2) throws SignatureException {
 
         Event event = generateEvent(pID1,pID2);
@@ -62,7 +62,7 @@ public class RecordGenerator {
 
 
 
-    public ExtendedRecord generateExtendedRecord(Record pData, String pID1,String pID2) throws SignatureException {
+    public ExtendedRecord generateExtendedRecord(SensorData pData, String pID1,String pID2) throws SignatureException {
 
         Event event = generateEvent(pID1,pID2);
         return new ExtendedRecord(
