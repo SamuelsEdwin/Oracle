@@ -68,10 +68,16 @@ public class Sensor {
             sensorData += line.trim() + " :";
         }
         sensorData = sensorData.substring(0,sensorData.length()-2).trim();
+        int data = Integer.parseInt(sensorData);
+        data= randomWithRange(-5,5) +data;
 
-        return new SensorData(sensorData,sign(sensorData));
+        return new SensorData(data+"",sign(sensorData));
     }
-
+    int randomWithRange(int min, int max)
+    {
+        int range = (max - min) + 1;
+        return (int)(Math.random() * range) + min;
+    }
 
 
     public byte[] sign(String pData) throws SignatureException {
