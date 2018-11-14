@@ -1,7 +1,5 @@
 package hardware;
 
-import java.util.Arrays;
-
 public class ExtendedRecord {
     public Record mRecord;
     public String mSignaturePointer;

@@ -1,11 +1,10 @@
 package hardware;
 
-import org.web3j.crypto.Credentials;
-import org.web3j.crypto.WalletUtils;
+
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
 import org.web3j.protocol.http.HttpService;
-import org.web3j.tx.Contract;
+
 
 import java.io.IOException;
 

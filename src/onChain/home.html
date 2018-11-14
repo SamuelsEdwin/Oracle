@@ -2,24 +2,9 @@
 <html lang="en">
 
     <head>
-        <title>Table V04</title>
+        <title>Hardware Oracle</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="css/util.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+
         <!--===============================================================================================-->
     </head>
 
@@ -30,25 +15,28 @@
 
 <table class="table">
     <tr>
-        <th>Entity</th>
-        <th>Address</th>
+        <th class="cell100 column1">Entity</th>
+        <th class="cell100 column2">Address</th>
 
     </tr>
-    <tr>
-        <td>Contract Address</td>
-        <td id ="contractAddress">Smith</td>
+    <tr class="row100 body">
+        <td class="cell100 column1" >Contract Address</td>
+        <td class="cell100 column2"id ="contractAddress">Smith</td>
 
     </tr>
-    <tr>
-        <td >Owner Address</td>
-        <td id ="ownerAddress">Jackson</td>
+    <tr class="row100 body">
+        <td class="cell100 column1">Owner Address</td>
+        <td class="cell100 column2" id ="ownerAddress">Jackson</td>
 
-    </tr>
-    <tr>
-        <td>Your Address</td>
-        <td id ="yourAddress">Doe</td>
+    </tr >
+    <tr class="row100 body">
+        <td class="cell100 column1">Your Address</td>
+        <td  class="cell100 column2" id ="yourAddress">Doe</td>
     </tr>
 </table>
+
+
+
 <div>
 
     <span>Does user have access : </span>
@@ -81,5 +69,12 @@
 <script src="js/web3.min.js"></script>
 <script src="js/truffle-contract.js"></script>
 <script src="js/app.js"></script>
+
+
+
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
+
+
 </body>
 </html>
