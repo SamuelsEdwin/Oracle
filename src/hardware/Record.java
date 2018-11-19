@@ -12,6 +12,9 @@ public class Record {
         this.mSignature = pSignature;
         this.mEventID = pEventID;
     }
+    public String payload() {
+        return mData + " : "+RecordGenerator.bytesToHex(mSignature);
+    }
 
     @Override
     public String toString() {

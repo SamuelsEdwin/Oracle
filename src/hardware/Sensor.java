@@ -81,6 +81,7 @@ public class Sensor {
 
         byte[] data = (pData.trim()).getBytes(ENCODING);
 
+
         mSignature.update(data);
 
         return mSignature.sign();
