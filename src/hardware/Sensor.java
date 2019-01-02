@@ -1,9 +1,5 @@
 package hardware;
-import javafx.util.Pair;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -68,21 +64,23 @@ public class Sensor {
             sensorData += line.trim() + " :";
         }
         sensorData = sensorData.substring(0,sensorData.length()-2).trim();
+        int data = Integer.parseInt(sensorData);
+        data= randomWithRange(-5,5) +data;
 
-        //String signature = sign(sensorData);
-
-        return new SensorData(sensorData,sign(sensorData));
-
-
-
+        return new SensorData(data+"",sign(sensorData));
     }
-
+    int randomWithRange(int min, int max)
+    {
+        int range = (max - min) + 1;
+        return (int)(Math.random() * range) + min;
+    }
 
 
     public byte[] sign(String pData) throws SignatureException {
 
 
         byte[] data = (pData.trim()).getBytes(ENCODING);
+
 
         mSignature.update(data);
 
@@ -97,11 +95,5 @@ public class Sensor {
         mVerifySignature.update(data);
         return mVerifySignature.verify(pSignature);
     }
-
-
-
-
-
-
 
 }
